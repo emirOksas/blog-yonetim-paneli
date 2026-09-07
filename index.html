@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Yönetim Paneli</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-content">
+        <h1>Workspace <span>/ Blog Yönetimi</span></h1>
+        <div class="user-profile">
+          <!-- Tema Değiştirme Butonu (YENİ) -->
+          <button id="themeToggle" class="theme-btn" title="Temayı Değiştir">
+            🌙
+          </button>
+          <div class="avatar">Admin</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="dashboard-grid">
+        <aside class="sidebar">
+          <section class="card form-section">
+            <div class="card-header">
+              <h2 id="formHeader">Yeni Yazı Oluştur</h2>
+            </div>
+            <form id="postForm">
+              <div class="input-group">
+                <label for="postTitle">Başlık</label>
+                <input
+                  type="text"
+                  id="postTitle"
+                  placeholder="Harika bir başlık düşünün..."
+                  required
+                />
+              </div>
+              <div class="input-group">
+                <label for="postBody">İçerik</label>
+                <textarea
+                  id="postBody"
+                  rows="5"
+                  placeholder="Düşüncelerinizi buraya yazın..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Gönderiyi Yayımla
+              </button>
+            </form>
+          </section>
+
+          <section class="card filter-section">
+            <div class="card-header">
+              <h2>Filtrele & Ara</h2>
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="İçeriklerde kelime ara..."
+              />
+            </div>
+            <div class="input-group">
+              <select id="userFilter">
+                <option value="all">Tüm Yazarlar (Filtresiz)</option>
+              </select>
+            </div>
+          </section>
+        </aside>
+
+        <section class="feed-section">
+          <div class="section-title">
+            <h2>Son Gönderiler</h2>
+            <span class="badge">Canlı Akış</span>
+          </div>
+
+          <div id="loading">
+            <div class="spinner"></div>
+            <p>Veriler API'den senkronize ediliyor...</p>
+          </div>
+
+          <div id="postsContainer" class="posts-grid"></div>
+
+          <div id="paginationContainer" class="pagination"></div>
+        </section>
+      </div>
+    </main>
+
+    <div id="commentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Yorumlar</h2>
+          <span class="close-btn" id="closeCommentModal">&times;</span>
+        </div>
+        <div
+          id="modalLoading"
+          class="modal-loading"
+          style="display: none; text-align: center; padding: 20px"
+        >
+          Yorumlar yükleniyor...
+        </div>
+        <div id="commentsContainer" class="comments-container"></div>
+      </div>
+    </div>
+
+    <div id="userModal" class="modal">
+      <div class="modal-content profile-modal">
+        <div class="modal-header">
+          <h2>Yazar Profili</h2>
+          <span class="close-btn" id="closeUserModal">&times;</span>
+        </div>
+        <div class="profile-body">
+          <div class="profile-avatar-large" id="profileInitials">A</div>
+          <h3 id="profileName">İsim Yükleniyor...</h3>
+          <p id="profileUsername" class="profile-username">@username</p>
+
+          <div class="profile-details">
+            <div class="detail-row">
+              <strong>E-posta:</strong> <span id="profileEmail">-</span>
+            </div>
+            <div class="detail-row">
+              <strong>Telefon:</strong> <span id="profilePhone">-</span>
+            </div>
+            <div class="detail-row">
+              <strong>Şirket:</strong> <span id="profileCompany">-</span>
+            </div>
+            <div class="detail-row">
+              <strong>Web Sitesi:</strong> <span id="profileWebsite">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
